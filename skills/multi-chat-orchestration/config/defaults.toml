@@ -1,0 +1,29 @@
+version = 1
+
+# Routing defaults for new work. Governing policy and host availability apply.
+[roles.lead]
+model = "gpt-6-astra"
+model_reasoning_effort = "xhigh"
+
+[roles.owner]
+model = "gpt-6-sol"
+model_reasoning_effort = "medium"
+
+[roles.helper]
+model = "gpt-6-luna"
+model_reasoning_effort = "high"
+agent_type = "mco_worker"
+
+[roles.reviewer]
+model = "gpt-6-astra"
+model_reasoning_effort = "xhigh"
+agent_type = "mco_reviewer"
+
+[roles.consequential_owner]
+model = "gpt-6-astra"
+model_reasoning_effort = "xhigh"
+
+[roles.consequential_reviewer]
+model = "gpt-6-astra"
+model_reasoning_effort = "xhigh"
+agent_type = "mco_reviewer"

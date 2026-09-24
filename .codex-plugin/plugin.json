@@ -1,0 +1,22 @@
+{
+  "name": "multi-chat-orchestration",
+  "version": "0.1.0",
+  "description": "Coordinate Codex issue tasks with explicit ownership, independent review, and delivery receipts.",
+  "author": {
+    "name": "Aviara Tech",
+    "url": "https://github.com/aviaratech"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Multi-Chat Orchestration",
+    "shortDescription": "Coordinate issue owners, reviews, and delivery receipts.",
+    "longDescription": "One lead coordinates issue tasks, bounded helpers, independent review, and explicit completion evidence. Instructions for Codex desktop; no runtime service.",
+    "developerName": "Aviara Tech",
+    "category": "Developer Tools",
+    "capabilities": [],
+    "defaultPrompt": "Use $multi-chat-orchestration to coordinate the requested outcome."
+  },
+  "homepage": "https://github.com/aviaratech/multi-chat-orchestration",
+  "repository": "https://github.com/aviaratech/multi-chat-orchestration",
+  "license": "MIT"
+}

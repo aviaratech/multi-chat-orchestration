@@ -1,0 +1,24 @@
+version = 1
+
+# Optional organization-wide override; omitted roles keep bundled defaults.
+[roles.owner]
+model = "gpt-6-sol"
+model_reasoning_effort = "medium"
+
+# Fictional reusable team configuration, not a live lead or task assignment.
+[teams.product.roles.owner]
+model = "gpt-6-sol"
+model_reasoning_effort = "medium"
+
+# An explicit ordinary-review comparison. Governing policy must permit it.
+[teams.product.roles.reviewer]
+model = "gpt-6-sol"
+model_reasoning_effort = "high"
+
+[teams.research.roles.owner]
+model = "gpt-6-astra"
+model_reasoning_effort = "xhigh"
+
+# Consequential reviewer stays at its independent Astra XHigh default.
+# To use an existing native reviewer profile, set agent_type on a reviewer role.
+# Verify its effective model/effort; fixed profile fields override spawn arguments.

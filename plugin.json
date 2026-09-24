@@ -1,0 +1,10 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "multi-chat-orchestration",
+  "version": "0.1.0",
+  "description": "Coordinate parallel Codex teams with explicit ownership, configurable model routing, independent review, and delivery receipts.",
+  "author": {"name": "Aviara Tech", "url": "https://github.com/aviaratech"},
+  "homepage": "https://github.com/aviaratech/multi-chat-orchestration",
+  "repository": "https://github.com/aviaratech/multi-chat-orchestration",
+  "license": "MIT"
+}

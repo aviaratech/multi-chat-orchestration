@@ -1,0 +1,4 @@
+interface:
+  display_name: "Multi-Chat Orchestration"
+  short_description: "Coordinate issue owners, reviews, and delivery receipts"
+  default_prompt: "Use $multi-chat-orchestration to coordinate the requested outcome with explicit ownership, authority, and acceptance evidence."
