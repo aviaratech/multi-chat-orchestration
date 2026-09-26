@@ -58,3 +58,15 @@ invocation already recorded a different route. The user edits the configuration
 while that invocation is running, then asks for a new invocation involving a
 security-sensitive change. Describe preflight, role selection, and which settings
 may change. No new model selection or task-creation authorization is implicit.
+
+## F. New issue titles and project placement
+
+A fictional product is built in example/product, but issue #12 belongs to
+example/library. Another issue #12 belongs to example/app. Both issue sources
+and their canonical repositories are verified on fictional provider github.com.
+The saved projects contain one
+exact match for example/app, no match for example/library, and a separately
+selected, unambiguous umbrella project. Describe both new task titles and
+projects, their registered issue identities, and the effect on existing chats.
+Then consider two saved projects both claiming example/library and no selected
+umbrella. Describe the permitted next action. No real task is created.
