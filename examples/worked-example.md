@@ -31,9 +31,12 @@ The selected owner and reviewer models are recorded in their native contracts.
 }
 ```
 
-Lead-a dispatches task `12`, binding its observed host, task, prepared worktree,
-source revision, authority, acceptance, and review route. Lead-b does the same
-for tasks `13` and `14`. Sharing example/app does not share ownership. Task 12
+Lead-a dispatches task `app-12` in the unique saved project for example/app,
+binding its observed host, task, prepared worktree, source revision, authority,
+acceptance, and review route. Lead-b dispatches `app-13` there. No saved project
+matches example/library, so the operator explicitly selects one unambiguous
+umbrella project for `library-14`; its registered repository remains
+example/library. Sharing example/app does not share ownership. Task 12
 must not switch leads when lead-b becomes the most recent active task.
 
 Owner 12 implements, checks its diff, and runs the required verification. It

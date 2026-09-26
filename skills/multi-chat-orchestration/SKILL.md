@@ -38,8 +38,12 @@ local registries are unsupported.
 - Invocation identity, not repository, task title, recency, shared working
   directory, memory scope, or the latest inbound sender, determines ownership.
   Starting another lead never implicitly takes over existing issue tasks.
-- One mergeable issue has one visible task titled exactly with its native issue
-  identifier, fresh issue-specific context, and one prepared worktree.
+- One mergeable issue has one visible task titled exactly `<repo>-<issue>`,
+  fresh issue-specific context, and one prepared worktree. For new tasks, `repo`
+  is the final path component of the verified issue-owning canonical repository,
+  and `issue` is its native issue number. Do not use a product repository, project
+  name, or role suffix in place of the issue owner. Existing task titles remain
+  unchanged; titles are presentation, never routing identity.
 - The issue task owns only that issue. It is the sole mutable owner of its
   implementation, verification, publication, review corrections, guarded
   delivery, terminal evidence, and cleanup when those stages are in scope.
@@ -162,6 +166,15 @@ Before `START`, prove the issue, task host/thread identity, repository,
 worktree, exact base or head, clean state, dependencies, selected execution
 route, and current registry binding do not conflict.
 
+For a new issue task, verify the issue's canonical `owner/repo` against its
+source repository before deriving the title or selecting a project. Prefer a
+saved repository project only when exactly one project matches that canonical
+repository identity. If none matches or matches are ambiguous, use an explicitly
+selected, unambiguous umbrella project and record the fallback in the task
+contract. If no such umbrella is selected, resolve the project choice with the
+operator before creation. Never infer repository ownership from a project,
+sidebar placement, task title, or a similarly named repository.
+
 Initial dispatch includes:
 
 ```text
@@ -198,7 +211,8 @@ change can. Generic approval of an outcome or handoff is insufficient.
 
 Before considering dispatch or takeover complete:
 
-- Read back the actual task title and require it to be exactly `<issue>`; reject `<issue>-builder` and other role suffixes.
+- Read back a new task's actual title and require exactly `<repo>-<issue>` from its verified issue-owning repository and native issue number; reject role suffixes. Preserve existing task titles during handoff and continuation.
+- Read back its project: the unique saved project matching the canonical issue-owning repository, or the recorded explicit unambiguous umbrella fallback. Project placement never changes registered issue identity.
 - Read back `START` and require the issue task to own its complete authorized lifecycle, including guarded merge, issue closure, and cleanup only when in scope. A PR-only outcome must not acquire merge authority.
 - Read back the review route and reason under the review policy below and governing personal/repository rules: an eligible owner-only check, or one direct native reviewer child that is never another visible task.
 - Read back explicit model/effort for the owner and any required reviewer; record requested and effective settings; preserve active routing unless explicitly changed.

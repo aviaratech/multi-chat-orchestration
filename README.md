@@ -14,6 +14,8 @@ rules, actual tool permissions, and operator authority still apply.
 
 - Keeps implementation, verification, corrections, and authorized delivery with
   the same issue owner.
+- Names new issue tasks `<repo>-<issue>` from the verified issue-owning
+  repository and places them in its uniquely matching saved project when present.
 - Gives the lead dependencies and outcome acceptance, while direct helpers
   report to their parent.
 - Separates self-checking from independent review and reuses the reviewer for
@@ -116,6 +118,13 @@ for host-specific plugin distribution.
    > changes pass repository checks and have approved pull requests. Stop before
    > merging. Use the product team from my selected configuration, including
    > its explicit models and efforts. Report any authority or routing conflict.
+
+For each new issue task, verify the issue's canonical repository and native
+number, then use its repository basename in the title. Prefer the uniquely
+matching saved repository project. If the match is missing or ambiguous, use an
+explicitly selected, unambiguous umbrella project; otherwise resolve the project
+choice before creation. A product project, title, or sidebar location does not
+establish issue ownership. Existing task titles and projects are left as they are.
 
 An organization can define several teams sharing role defaults. Each invocation
 binds actual lead and engineer tasks to one outcome. Team names and repository
