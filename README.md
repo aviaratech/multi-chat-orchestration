@@ -25,6 +25,8 @@ rules, actual tool permissions, and operator authority still apply.
 - Isolates invocations sharing a repository and reconciles every child and pending
   lead action before yielding. Cross-invocation dependencies stay lead-to-lead.
 - Uses native task messages and bounded snapshots rather than adding a service.
+- Uses substantial waits for bounded, evidence-based improvements within the
+  current owner's authority while primary work retains priority.
 
 ## Requirements and limits
 

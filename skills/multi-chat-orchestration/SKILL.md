@@ -201,6 +201,24 @@ or architectural reapproval for an unchanged outcome. Re-verify exact source
 and provenance after changes. Never widen caps, repeat a consumed one-use model
 attempt, bypass required review, or infer production authority from delivery ownership.
 
+During a substantial process or dependency wait, use available capacity for a
+bounded pass over existing logs, receipts, and measurements to find a concrete
+improvement to performance, durable checkpoint/resume, or progress, health, and
+ETA reporting.
+Check once when the wait or new evidence warrants it, not on every poll. A
+completion, failure, or resource signal from the primary work takes priority.
+Low-value waits and waits with no new evidence may remain idle.
+
+Make an improvement during the wait only within the current issue's scope,
+ownership, isolation, resource limits, and review authority. Do not alter a
+running job's source, inputs, configuration, or cache, contend for its resource
+class, bypass a hold or required review, or start another task or agent just to
+investigate. If a useful change needs broader authority or a conflicting
+resource, prepare a concrete proposal linked to the existing owner or issue:
+cite the evidence, expected benefit and unknowns, smallest change, and proof.
+Keep it in existing task history and receipts; it creates no finding quota,
+mandatory report, or new upward message type.
+
 ## Dispatch and handoff attestation
 
 At every task creation, `START`, or lead handoff, re-read this skill and the
@@ -440,6 +458,12 @@ Before starting additional tracks or yielding:
 5. Check the roster again before yielding and checkpoint unresolved actions.
    Do not leave a known actionable request only in prose or a notification badge.
    If backlog remains, reduce new starts rather than abandoning pending owners.
+
+When a substantial wait leaves lead capacity, use the same evidence and authority
+limits to consider a bounded improvement to the outcome path. Reconcile primary
+signals and pending actions first; do not repeat the investigation at every
+snapshot. Keep any proposal with the existing owner or issue and receipts, and
+preserve the sparse upward protocol.
 
 Size concurrent work by actual resource limits and the lead's ability to service
 pending actions. There is no proven model-wide track limit. Six simultaneous
