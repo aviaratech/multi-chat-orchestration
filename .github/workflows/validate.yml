@@ -1,15 +1,73 @@
 name: Validate package
+
 on:
   push:
+    branches: [main]
   pull_request:
+
 permissions:
   contents: read
+
 jobs:
-  validate:
-    runs-on: ubuntu-latest
+  tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.11'
       - name: Test installation and registry
         run: python3 -m unittest discover -s tests -v
-      - name: Check whitespace
-        run: git diff --check HEAD
+
+  whitespace:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Check committed changes
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" == pull_request ]]; then
+            git diff --check "$BASE_SHA...$HEAD_SHA"
+          else
+            if [[ "$BASE_SHA" == 0000000000000000000000000000000000000000 ]]; then
+              BASE_SHA="$(git hash-object -t tree /dev/null)"
+            fi
+            git diff --check "$BASE_SHA" "$HEAD_SHA"
+          fi
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: trufflesecurity/trufflehog@4dd8831c5f12599465d4d45c3c447b4018a34c85 # v3.97.9
+        with:
+          version: 3.97.9
+          extra_args: --no-verification --results=unverified,unknown --fail-on-scan-errors
+
+  validate:
+    if: ${{ always() }}
+    needs: [tests, whitespace, secrets]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require every lane
+        env:
+          TESTS_RESULT: ${{ needs.tests.result }}
+          WHITESPACE_RESULT: ${{ needs.whitespace.result }}
+          SECRETS_RESULT: ${{ needs.secrets.result }}
+        run: |
+          printf 'tests=%s whitespace=%s secrets=%s\n' "$TESTS_RESULT" "$WHITESPACE_RESULT" "$SECRETS_RESULT"
+          [[ "$TESTS_RESULT" == success && "$WHITESPACE_RESULT" == success && "$SECRETS_RESULT" == success ]]
