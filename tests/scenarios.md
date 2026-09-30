@@ -18,7 +18,10 @@ of its completion. Determine routing and each participant's permitted actions.
 ## B. Six arrivals and interrupted lead
 
 One invocation binds lead-a and owners 21–26. No other owners exist. Its saved
-snapshot predates these events:
+snapshot predates these events. Use invocation `invocation:fictional-burst`,
+host local, provider github.com, repository example/app and epoch 1. Each arrival
+has its own native message and turn identity (`message-21`/`turn-21` through
+`message-26`/`turn-26`) and cursor (`cursor-21` through `cursor-26`):
 
 - Owner 21 completed, with current revision, passing checks, required approval,
   and cleanup proof. The same source receipt was delivered twice.
@@ -124,3 +127,75 @@ Separately, an already-started owner discovers its supposedly focused check
 invokes an unrecorded cloud service and requires a new permission. Describe
 the permitted pre-dispatch and owner actions, what cannot be claimed as proved,
 and which precise decisions remain outstanding.
+
+## M. Interruption at terminal boundaries
+
+Each independent run uses invocation `invocation:fictional-terminal`, lead-a,
+host local, provider github.com, repository example/app, issue 41, owner-41 and
+epoch 1. Another owner-42 remains registered and is not terminal. Owner-41's
+receipt is `message-41` in `turn-41` at `cursor-41`, with exact delivered revision,
+review/CI evidence and the identities of its owned branch and worktree. The
+outcome requires approved source merge, issue closure and owned cleanup; it has
+no release or deployment obligation. Native/GitHub/resource readbacks remain
+available. Consider interruptions independently:
+
+- The receipt arrived, but acceptance was not recorded.
+- Acceptance was recorded, but the lead has not observed the owner's cleanup
+  readback. The receipt claims the worktree is absent.
+- Acceptance and cleanup readback are recorded; archival has not been requested.
+- Archival succeeded, but interruption lost the tool result and checkpoint
+  update. The native chat is now archived.
+- Archival readback is recorded. The locked helper removed owner-41, but the
+  process failed after replacement before the success result was observed.
+  The checkpoint still retains the prior expected entry. Owner-42 is unchanged.
+- All owners of a separate otherwise identical invocation were accepted,
+  cleaned up and archived. The helper retired that empty invocation, but the
+  success result was lost. Its checkpoint still retains the prior entry.
+
+For each run, describe authoritative reads, the first remaining action, and the
+resulting checkpoint. Also consider a stale expected-entry rejection where
+owner-42 changed state concurrently, and an absent invocation with no retained
+acceptance/archival or update-attempt evidence.
+
+## N. Archived chat and retained owned worktree
+
+Invocation `invocation:fictional-residue` still binds lead-a and owner-51 for
+example/library#51, host local/provider github.com, epoch 1. GitHub says merged
+and closed, and the native chat is archived. The saved checkpoint says
+"terminal" without a cleanup readback. A current resource read finds the exact
+owner-51 worktree and branch still present. There is no authorized persistent
+retention obligation and no transfer. Describe recovery, mutable ownership and
+the proof needed before binding retirement. Then consider that the worktree
+identity or current use cannot be established from the available evidence.
+
+## O. Source closed while release remains incomplete
+
+Invocation `invocation:fictional-package` binds lead-a and owner-61 for
+example/package#61, host local/provider github.com, epoch 1. The authorized
+outcome includes source merge and a verified package release; installation is
+separately held. Source is merged and its issue closed, but the exact package
+release has not been published or verified. Owner-61 retains its worktree and
+is idle. A message calls the source closure "complete". Describe the terminal
+checkpoint, permitted next actions and what remains incomplete.
+
+## P. Transferred owner during terminal recovery
+
+An old checkpoint in `invocation:fictional-old` records lead-a's acceptance of
+owner-71's receipt for example/app#71, host local/provider github.com, epoch 1.
+An explicitly authorized transfer later quiesced that owner, removed its old
+binding and registered it with lead-b under `invocation:fictional-new`, epoch 1.
+Lead-a recovers the old pending cleanup/archival/retirement action and another
+copy of the old receipt. The current registry and transfer history are available.
+Describe each lead's permitted actions and the old checkpoint's disposition.
+
+## Q. Send result lost during interruption
+
+Invocation `invocation:fictional-send` binds lead-a and owner-81 for
+example/app#81, host local/provider github.com, epoch 1. A blocker arrives as
+`message-81` in `turn-81` at `cursor-81`. The lead prepares an in-scope decision
+for that source, invokes the send tool, and is interrupted before observing its
+result. Consider independently: the recipient's native history contains that
+exact decision with a delivered message identity; the tool retained an explicit
+failure and a focused recipient read establishes no delivery; and both views
+omit the relevant content so delivery is unknown. Describe the next action and
+checkpoint for each case. Then consider a lead handoff to epoch 2 before recovery.

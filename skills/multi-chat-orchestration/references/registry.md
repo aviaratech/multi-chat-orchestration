@@ -36,6 +36,18 @@ reconciliation, not automatic retry with an overwritten snapshot. The helper
 trusts the supplied actor identity; policy and original approvals supply authority.
 If a write reports failure after replacement, read current state before retrying.
 
+For interrupted terminal removal, reconcile the validated current registry with
+the exact expected/replacement entries retained in the native outcome checkpoint.
+Confirm acceptance, owned cleanup and native archival evidence before recording
+retirement. If the intended removal is already observed, do not repeat it. If
+the prior entry remains, revalidate the current lead/source/epoch and retry only
+against that exact observed entry. A changed entry needs fresh reconciliation
+that preserves other owners; a missing old binding also requires checking global
+source ownership and authorized transfer history. Absence without the retained
+terminal/attempt evidence is an evidence gap, not permission to recreate state,
+claim completion or remove an owner now bound elsewhere. Retiring the empty
+invocation is a separate compare-and-swap and readback after owner removal.
+
 A lead handoff changes only that invocation's lead and increments its epoch once.
 The current lead normally performs it. For an unavailable lead, an incoming lead
 with separately verified operator approval may pass `--authorized-takeover` with

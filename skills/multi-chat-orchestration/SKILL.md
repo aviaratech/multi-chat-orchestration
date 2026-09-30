@@ -450,11 +450,23 @@ per-task cursors. Never infer progress from `active` status alone or assume an
 empty/truncated message view proves there is no pending result.
 
 In the existing `OUTCOME_CONTROL_SNAPSHOT` in native lead history, retain for
-each child: registered identity, last observed cursor, current state, and any
-pending lead action with its source message/turn identity. Record a decision as
-sent only after inspecting the send result; received, pending, sent, and accepted
-are distinct states. Retain unresolved actions across compaction and handoff.
-This is the lead's existing outcome checkpoint, not a second queue or tracker.
+each child: complete registered source identity, invocation and epoch, last
+observed cursor, current state, and the terminal observations below. Each pending
+action retains its original native message/turn identity, source invocation/epoch
+and cursor, exact source state, concrete next decision/action, intended recipient,
+and observed send/acceptance evidence. A handoff preserves that provenance while
+revalidating the current binding for the next action. Repeated delivery of the
+same source receipt/state maps to the existing action, even if its transport
+message or cursor differs.
+
+Received, pending, send attempted, delivery confirmed, and accepted are distinct
+observations. Record delivery only from an inspected tool result or the exact
+decision's delivered native message identity. If interruption loses a send result,
+read the retained tool result and recipient history before retrying: confirmed
+delivery is not resent; a proven failed/undelivered send may be retried under the
+current binding; unknown delivery remains an explicit pending evidence gap.
+Retain unresolved actions across compaction and handoff in this existing
+checkpoint, not a second queue or tracker.
 
 Before starting additional tracks or yielding:
 
@@ -465,10 +477,9 @@ Before starting additional tracks or yielding:
 2. For each blocker, send the in-scope decision/resume, record the exact external
    wait and responsible party, or present the concrete operator decision. An
    acknowledgment is not resolution. Keep useful independent work moving.
-3. For each terminal result, validate binding, final state, required proof and
-   cleanup; accept and archive, or return one concrete evidence/correction gap
-   to the same owner. Repeated delivery of the same source message/state is
-   idempotent; do not repeat acceptance or downstream actions.
+3. For each terminal result, follow the terminal procedure below, or return one
+   concrete evidence/correction gap to the same owner. Do not repeat acceptance
+   or downstream actions for an already observed source receipt/state.
 4. Reconcile idle children that are neither externally blocked nor terminal:
    read their last turn, resolve the lead-owned gate, and resume the same owner.
 5. Check the roster again before yielding and checkpoint unresolved actions.
@@ -494,9 +505,52 @@ notification limitation needs a separate smallest explicitly authorized change.
 ## Terminal state
 
 The issue task proves its in-scope delivery, closure, terminal evidence, and
-cleanup, then emits one epoch-bound `COMPLETION_RECEIPT`. The lead verifies the
-registered identity and evidence, archives the issue task, and atomically
-removes the terminal outcome or issue-task binding.
+cleanup, then emits one epoch-bound `COMPLETION_RECEIPT`. In the existing
+per-child checkpoint, the lead retains four separate observations, each with
+pending/unknown/confirmed status, exact action identity, and authoritative evidence:
+
+1. **Terminal evidence accepted.** Validate the registered source and receipt
+   epoch, exact delivered state, required review/checks and every in-scope
+   obligation. Record source merge/issue closure separately from package release
+   or cutover completion. A closed source issue does not complete an outstanding
+   release obligation; an excluded or separately held installation adds no new
+   authority. Resume the same owner for unfinished in-scope work.
+2. **Owned cleanup read back.** Re-read the owner's cleanup evidence and current
+   resource state for the exact owned worktree, branch and other ephemeral
+   resources. Record verified absence or contract-authorized retention with its
+   identity and purpose. Closure, archival and a receipt's cleanup claim alone
+   do not prove cleanup. Unknown ownership/current use preserves the resource
+   and the evidence gap.
+3. **Chat archival read back.** Only after acceptance and cleanup are confirmed,
+   archive the exact registered chat and verify its native archived state. Keep
+   the tool attempt/result and native readback in the checkpoint.
+4. **Binding retirement read back.** Re-read the validated registry and current
+   lead/source/epoch, then use the locked helper with the exact expected entry
+   to remove only that terminal issue-task binding. Verify the resulting entry,
+   preserving unrelated owners and invocations. Retire an invocation only after
+   all its owners passed these steps and its issue-task list is empty. Retain
+   each intended expected/replacement entry and observed result in native history,
+   not in additional registry fields.
+
+On recovery, re-read authoritative native/GitHub/resource/registry evidence and
+resume the first unfinished step whose prerequisites are confirmed. Refresh
+uncertain or contradictory observations; do not replay an already confirmed
+action. For an unobserved archival or registry result, compare current state with
+the retained exact attempt and provenance. A successful-but-unobserved desired
+update can be recorded without repeating it; a stale expected entry requires
+fresh reconciliation before another locked compare-and-swap. Absence alone is
+not proof of terminal acceptance or retirement. Check global source ownership
+and transfer history before treating a missing old binding as completed work.
+Never recreate an absent invocation or relax identity/epoch checks for replay.
+
+If an archived chat still has unverified owned cleanup, revalidate its current
+binding and restore that same owner's chat to finish cleanup, then correct the
+terminal observations and verify archival again. The issue task remains the
+sole mutable cleanup owner. If ownership transferred, the former lead retains
+the old evidence and transfer disposition but cannot resume, clean up, archive
+or retire the transferred owner's current binding. Reconcile with its current
+bound lead under the existing peer-coordination rules; missing or conflicting
+authority stays an explicit gap.
 
 No milestone message substitutes for terminal evidence. Do not leave a second mutable workflow or binding registry active after
 replacement. This package installer only links the skill; it does not manage

@@ -26,6 +26,17 @@ duplicate receipts once, retained unsent decisions and evidence gaps, reused the
 same reviewer for corrections, and closed the handoff window despite an
 unavailable child. No real tasks or messages were used in that exercise.
 
+On 2026-09-30, a separate fresh helper requested on the GPT-6 Luna High route
+received only the candidate skill and fictional scenarios A–D and M–Q, without
+expected answers. Effective model metadata was unavailable. Its dry-run actions
+retained original message/turn, invocation/epoch and cursor provenance; separated
+acceptance, cleanup, archival and binding retirement; and recovered six mixed
+arrivals, duplicates, stale epochs and interrupted sends/finalization. It kept
+unknown delivery pending, re-read successful-but-unobserved updates, preserved
+unrelated owners, restored the same cleanup owner for an archived chat retaining
+a worktree, and deferred retirement for an incomplete release or transferred
+owner. No real messages, registry changes, publication or cleanup occurred.
+
 These checks do not establish throughput, cost savings, defect reduction,
 multi-host support, marketplace installation, or reliable background wakeups.
 The registry helper checks supplied identities but cannot authenticate the
