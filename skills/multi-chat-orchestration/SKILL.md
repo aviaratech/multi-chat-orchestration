@@ -166,6 +166,14 @@ Before `START`, prove the issue, task host/thread identity, repository,
 worktree, exact base or head, clean state, dependencies, selected execution
 route, and current registry binding do not conflict.
 
+Resolve known prerequisites before dispatch through the repository's supported
+readiness and access checks: author identity, distinct reviewer route, required
+approval eligibility, runtime admission, and worktree ownership. A configured
+credential reference is not proof of access. Use read-only checks where
+available; do not create a credential, grant permissions, or write an admission
+record as a preflight shortcut. Record any access that cannot yet be proved and
+the exact later proof rather than claiming it passed.
+
 For a new issue task, verify the issue's canonical `owner/repo` against its
 source repository before deriving the title or selecting a project. Prefer a
 saved repository project only when exactly one project matches that canonical
@@ -188,6 +196,14 @@ and routine correction loop once, within a finite resource and authority
 envelope wherever governing contracts permit. Size bounds from the actual
 command graph (including hooks and prerequisite builds), available measurements,
 and headroom; distinguish sampled stop thresholds from enforced hard ceilings.
+Record which lifecycle operations are authorized, including publication,
+guarded merge, closure, cleanup, and any separately approved release or cutover.
+Record known command/resource phases and their reservations together, so a
+scheduled transition inside that approved graph does not become a new authority
+request. The owner still performs required admission checks and waits for
+conflicting resource use to end. A changed graph, resource bound, shared-state
+conflict, credential or permission requirement, or authority remains a concrete
+decision to resolve. Production authority must be explicit.
 Do not use an arbitrary undersized grant that makes ordinary work impossible.
 If repository policy prevents a workable envelope, identify the exact rule and
 propose the smallest owner-specific amendment to the authorized decision maker.

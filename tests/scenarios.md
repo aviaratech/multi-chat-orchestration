@@ -103,3 +103,24 @@ preparation code and tests, and a local low-resource runner is free. A small
 change can be made and checked there without touching the remote job's source,
 inputs, configuration, cache, or resource class. Describe the permitted work,
 proof, and handling of the remote job's eventual result.
+
+## K. Complete lifecycle and a known resource transition
+
+A fictional issue owner is authorized to implement, verify, publish, obtain
+independent approval, correct review findings, merge, close, and clean up. Its
+recorded command graph includes focused checks followed by PostgreSQL checks;
+the bounded resources for both phases are approved. Another job currently
+holds the PostgreSQL resource. The author identity, reviewer access, runtime
+admission, and worktree ownership were verified before START. The reviewer
+requests an in-scope correctness fix, and the owner later observes that the
+PostgreSQL reservation is available. Describe the next actions, required proof,
+and permitted upward messages. No production action is in scope.
+
+## L. Missing access and a changed command graph
+
+Before dispatch, a fictional lead finds that a configured reviewer credential
+cannot access the issue's repository. The issue body otherwise passes readiness.
+Separately, an already-started owner discovers its supposedly focused check
+invokes an unrecorded cloud service and requires a new permission. Describe
+the permitted pre-dispatch and owner actions, what cannot be claimed as proved,
+and which precise decisions remain outstanding.
