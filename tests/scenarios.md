@@ -10,8 +10,9 @@ Unless a scenario limits or withdraws it, assume an accessible original fictiona
 human instruction explicitly authorizes each invocation's lead to instruct its
 registered owners and those owners to return blockers and terminal receipts to
 their current bound lead, including authorized lead succession. It does not grant
-cross-invocation or helper-to-lead communication. All approvals and native records
-below are fictional inputs, not authority for live tools.
+cross-invocation owner or helper-to-lead communication. A peer-lead exchange needs
+its own original human scope stated in the relevant input. All approvals and
+native records below are fictional inputs, not authority for live tools.
 
 ## A. Parallel invocations and crossed message
 
@@ -21,6 +22,9 @@ owner-14 for example/library#14. All identities use host local/provider github.c
 and both leads are at epoch 1. Lead-b is newer and sent owner-12 a note saying it
 has free capacity. Owner-12 is now complete. Lead-b accidentally receives a copy
 of its completion. Determine routing and each participant's permitted actions.
+An accessible original human record specifically authorizes lead-a and lead-b to
+exchange routing-discrepancy notifications for these two invocations; it grants
+no authority over the other lead's owners or receipts.
 
 ## B. Six arrivals and interrupted lead
 
@@ -239,8 +243,11 @@ lead-c/epoch 2. Owner-45 remains the registered owner of example/app#45 and has
 not yet sent its terminal receipt. Consider two original human records: one
 explicitly authorizes return messages to the invocation's current bound lead
 including authorized succession; the other authorizes messages only to lead-a.
+Both records also permit the named lead to instruct its registered owners; only
+the first extends that direction to an authorized successor.
 The handoff preserved each original record and its limits unchanged. Describe the
-recipient, epoch, authority checks and pending action under each grant. Separately,
+sender of post-update binding notifications, recipient, epoch, authority checks
+and pending action under each grant. Separately,
 an owner already successfully sent its receipt before the handoff but received no
 acknowledgment.
 

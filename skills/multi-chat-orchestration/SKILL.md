@@ -405,12 +405,17 @@ Ordinary handoff:
 
 1. Record every active issue task's cursor and the handoff start time.
 2. Atomically update the registry to the incoming lead at `epoch + 1`.
-3. Send each active issue task (omit model/effort overrides on messages):
+3. The incoming bound lead validates the preserved communication scope, resolves
+   each active issue task and sends its binding (omit model/effort overrides):
 
    ```text
    LEAD_BINDING outcomeKey epoch leadHostId leadThreadId
    COMMUNICATION_AUTHORITY originalHumanSource approvedScope limits currentStatus
    ```
+
+   The outgoing lead is no longer the resolved sender after step 2. If the
+   original scope excludes the incoming lead, retain the notification locally
+   and obtain the concrete missing permission through an authorized path.
 
 4. The incoming lead takes one bounded native task reconciliation from the
    recorded cursors.

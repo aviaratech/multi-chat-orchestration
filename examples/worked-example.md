@@ -11,7 +11,9 @@ authorizes each lead to instruct its own registered owners and those owners to
 return blockers and terminal receipts to their current bound lead, including an
 authorized successor. Each START retains a reference to that original human
 source, its scope, restrictions and current status separately from lifecycle
-authority and the registry. Agent quotations alone cannot establish this approval.
+authority and the registry. Those original human records also authorize the two
+leads and their authorized successors to exchange concrete dependencies between
+these invocations. Agent quotations alone cannot establish either approval.
 
 The leads register unique invocation keys through the locked registry helper.
 The selected owner and reviewer models are recorded in their native contracts.
@@ -78,7 +80,8 @@ An artifact handoff transfers evidence, not issue ownership or merge permission.
 If lead-b hands its invocation to lead-c, only B's epoch increments. The handoff
 snapshot includes child cursors and pending decisions. It preserves the original
 human communication scope and source unchanged; this example's approval covers
-the authorized successor.
+the authorized successor. After the registry update, incoming lead-c resolves its
+registered owners and sends their binding notifications under that scope.
 An approval restricted to lead-b would need new human permission for sends to
 lead-c. During one declared, bounded reconciliation window, eligible old-epoch
 messages are reconciled once;
