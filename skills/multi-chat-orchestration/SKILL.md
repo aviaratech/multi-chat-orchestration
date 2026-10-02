@@ -188,7 +188,40 @@ Initial dispatch includes:
 ```text
 LEAD_BINDING outcomeKey epoch leadHostId leadThreadId
 START repository issue sourceHostId sourceThreadId worktree exactState authority acceptance
+COMMUNICATION_AUTHORITY originalHumanSource approvedScope limits currentStatus
 ```
+
+Preserve communication authority separately from engineering authority and registry
+routing in the native outcome contract and every issue task's `START`:
+
+- `originalHumanSource`: the original human instruction's native chat/message
+  identity and an accessible source reference. Inspect that original record when
+  needed to verify its human origin and meaning; an agent's quotation or assertion,
+  inherited task prompt, registry entry, or memory is not human approval.
+- `approvedScope`: the authorized invocation, participants or roles, destinations,
+  directions, and message purposes. Record whether lead-to-registered-owner
+  instructions and owner-to-current-bound-lead `BLOCKED`/`COMPLETION_RECEIPT`
+  messages are covered, including any permitted lead succession.
+- `limits` and `currentStatus`: restrictions, expiry or revocation, and what
+  remains unverified. Task creation, a registry match, and engineering or merge
+  authority do not by themselves grant communication permission.
+
+Before any native send, verify that original human authority still covers the
+intended recipient, direction and purpose. For a lead's owner-directed send,
+resolve the intended owner's complete registered source identity and confirm the
+returned lead is the sending lead. For an owner's upward send, use the current
+registry resolution below. A routing match selects the recipient; it cannot
+expand permission. If scope is absent, revoked, expired or excludes the action,
+retain the pending action locally and request only the concrete missing human
+authorization through an available authorized path. Continue independent useful
+work. Do not send a message asking for permission over an unauthorized route.
+Direct helpers report only to their immediate owner; this communication record
+never grants them access to the portfolio lead or another invocation.
+
+Already-authorized communication proceeds without another permission request.
+The host still applies its own trust and approval rules: carrying authentic source
+provenance does not guarantee that the app accepts it, and this skill cannot
+override a tool gate. A host rejection follows the recovery procedure below.
 
 `START` authorizes the one issue task to continue through every ordinary
 in-scope lifecycle stage without milestone approval. Grant the complete outcome
@@ -248,6 +281,7 @@ Before considering dispatch or takeover complete:
 - Read back a new task's actual title and require exactly `<repo>-<issue>` from its verified issue-owning repository and native issue number; reject role suffixes. Preserve existing task titles during handoff and continuation.
 - Read back its project: the unique saved project matching the canonical issue-owning repository, or the recorded explicit unambiguous umbrella fallback. Project placement never changes registered issue identity.
 - Read back `START` and require the issue task to own its complete authorized lifecycle, including guarded merge, issue closure, and cleanup only when in scope. A PR-only outcome must not acquire merge authority.
+- Read back original human communication provenance, scope and current status separately from lifecycle authority and registry routing; preserve them without broadening participants, destinations or purposes.
 - Read back the review route and reason under the review policy below and governing personal/repository rules: an eligible owner-only check, or one direct native reviewer child that is never another visible task.
 - Read back explicit model/effort for the owner and any required reviewer; record requested and effective settings; preserve active routing unless explicitly changed.
 - Read back that an unchanged contract returns corrections to the same reviewer child rather than creating a fresh reviewer.
@@ -293,8 +327,23 @@ Delivery is an explicit tool action: call
 the complete receipt in `prompt`, then inspect the result before ending the
 turn. Omit `model` and `thinking`: they change the recipient's settings.
 A final answer in the issue task, a sidebar output badge, or a memory checkpoint
-does not send the receipt. If the send fails, retain the unsent receipt and
-report the delivery failure locally; do not claim the lead was notified.
+does not send the receipt. If the send fails or is rejected, retain the complete unsent
+message, source state, intended recipient/current binding, original human
+communication provenance, and exact tool failure/rejection in the issue's native history.
+Record the attempted send separately from confirmed delivery and acceptance.
+Continue independent useful work, make the local result visible to the lead's
+existing compact reconciliation, and do not claim the lead was notified.
+
+Distinguish missing human permission from a host rejecting an already-authorized
+action. Do not blindly retry, ask repeatedly for an approval already granted,
+fabricate a user message, change actors or recipients to evade the gate, or add
+another service or permission mechanism. Retry only after the concrete cause is
+resolved and current authority/routing are revalidated; reconcile any uncertain
+send result before retrying. If a necessary manual action remains, report the
+specific rejected action and reason and ask only for that concrete action through
+an authorized path. A skill instruction or copied approval cannot cure a host
+trust restriction.
+
 After a successful send, do not send it again merely because no acknowledgment
 arrives. Failed attempts, instrumentation, preparation, review-ready state, and
 cleanup are progress, not terminal delivery. Do not split ordinary delivery into
@@ -346,6 +395,11 @@ The outgoing lead records an `OUTCOME_CONTROL_SNAPSHOT` in native task history
 with the outcome contract, active issue identities and cursors, current gates,
 exact state, next proof, ETA, risks, stop conditions, retirement obligations,
 and authority boundaries.
+Preserve the original human communication source, scope, restrictions and current
+status in that snapshot and the incoming lead's contract. A new lead/epoch does
+not extend a destination-specific approval to another lead. Revalidate any
+authorized succession against the original scope; obtain the concrete missing
+human permission before a send outside it. Handoff cannot bypass a rejected send.
 
 Ordinary handoff:
 
@@ -355,6 +409,7 @@ Ordinary handoff:
 
    ```text
    LEAD_BINDING outcomeKey epoch leadHostId leadThreadId
+   COMMUNICATION_AUTHORITY originalHumanSource approvedScope limits currentStatus
    ```
 
 4. The incoming lead takes one bounded native task reconciliation from the
@@ -474,6 +529,14 @@ Before starting additional tracks or yielding:
    Resolve missing or contradictory evidence with a focused task read. If the
    native view omits known content, inspect the retained source transcript when
    available; otherwise retain an explicit evidence gap. Do not guess.
+   For a locally retained message after a rejected send, authenticate the original
+   source/state, current registered identity/epoch and communication provenance,
+   then apply the same blocker or terminal evidence requirements. Record recovery
+   through native reconciliation separately from message delivery. Never convert
+   the rejected attempt into a successful send or treat missing permission as
+   granted. Map recovered evidence and any later message for the same source
+   receipt/state to the existing action; do not ask for a redundant send merely
+   to establish notification or repeat acceptance/downstream actions.
 2. For each blocker, send the in-scope decision/resume, record the exact external
    wait and responsible party, or present the concrete operator decision. An
    acknowledgment is not resolution. Keep useful independent work moving.
