@@ -37,6 +37,17 @@ unrelated owners, restored the same cleanup owner for an archived chat retaining
 a worktree, and deferred retirement for an incomplete release or transferred
 owner. No real messages, registry changes, publication or cleanup occurred.
 
+On 2026-10-04, a fresh helper requested on the GPT-6 Luna High route received
+the candidate skill and fictional scenario W, without expected answers.
+Effective model and effort metadata were unavailable. Its dry-run responses
+retained the release owner's adoption dependency and the existing shared
+installer owner, kept ordinary corrections within their authorized bounds,
+required release-bound installed-version and artifact readbacks, preserved a
+separate installation hold, and did not infer production activation authority
+from completed installations. No real operations occurred in that exercise.
+Owner and independent read-only review each passed the 20 unit tests and diff
+checks; these observations do not prove installation in a live consumer.
+
 These checks do not establish throughput, cost savings, defect reduction,
 multi-host support, marketplace installation, or reliable background wakeups.
 The registry helper checks supplied identities but cannot authenticate the
