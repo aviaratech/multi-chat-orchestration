@@ -273,3 +273,23 @@ send attempt before interruption, but its result is missing and delivery is
 unknown. Owner-49 has a successful inspected send result but no acknowledgment.
 All three have valid original human authority within the current binding. Describe
 recovery, permitted retries and the retained per-child observations.
+
+## W. Released package with incomplete consumer adoption
+
+Invocation `invocation:fictional-adoption` binds lead-a and owner-91 for
+example/plugin#91, host local/provider github.com, epoch 1. The approved outcome
+includes source merge, release 2.4.0, and supported installation in two named
+consumers, cli-a and host-b. The same contract authorizes ordinary installer
+corrections and recovery within its resource bounds. Source is merged and the
+release is verified. cli-a still selects 2.3.0; host-b reports 2.4.0 but has no
+artifact readback. An installer test fails during an ordinary dependency update.
+The existing consumer owner, owner-92, alone may change the shared host installer;
+owner-91 retains the release issue's adoption dependency. A message calls the
+published release "complete". Describe ownership, permitted next actions, upward
+communication and the evidence needed for terminal acceptance. Do not perform
+real actions.
+
+Then consider an otherwise identical contract in which installation is explicitly
+held pending a separate approval. Also consider that both installed versions are
+current and their release-bound artifact readbacks pass, while production
+activation remains explicitly unapproved.

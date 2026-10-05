@@ -1,6 +1,6 @@
 {
   "name": "multi-chat-orchestration",
-  "version": "0.1.0+codex.20260926151441",
+  "version": "0.1.1",
   "description": "Coordinate Codex issue tasks with explicit ownership, independent review, and delivery receipts.",
   "author": {
     "name": "Aviara Tech",

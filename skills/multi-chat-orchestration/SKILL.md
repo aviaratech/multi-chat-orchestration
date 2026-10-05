@@ -231,6 +231,15 @@ command graph (including hooks and prerequisite builds), available measurements,
 and headroom; distinguish sampled stop thresholds from enforced hard ceilings.
 Record which lifecycle operations are authorized, including publication,
 guarded merge, closure, cleanup, and any separately approved release or cutover.
+When the approved outcome includes a package or plugin release and consumer
+adoption, record the release identity and known consumers in this same contract.
+The owner carries delivery through supported installation, selected-version and
+artifact readback, ordinary recovery, and cleanup for those consumers. Use the
+existing consumer owner for shared installation changes; the release owner
+retains the adoption dependency until its actual readback is accepted. A source
+merge or published release alone does not complete this outcome. An explicitly
+excluded or held installation remains excluded or held; release authority does
+not grant production activation, new credentials, or broader configuration changes.
 Record known command/resource phases and their reservations together, so a
 scheduled transition inside that approved graph does not become a new authority
 request. The owner still performs required admission checks and waits for
@@ -579,9 +588,12 @@ pending/unknown/confirmed status, exact action identity, and authoritative evide
 
 1. **Terminal evidence accepted.** Validate the registered source and receipt
    epoch, exact delivered state, required review/checks and every in-scope
-   obligation. Record source merge/issue closure separately from package release
-   or cutover completion. A closed source issue does not complete an outstanding
-   release obligation; an excluded or separately held installation adds no new
+   obligation. Record source merge/issue closure separately from package release,
+   consumer installation, and operational completion. Bind installed-version and
+   artifact readbacks to the authorized release and consumer set; missing or stale
+   installed evidence leaves adoption incomplete. A closed source issue or
+   published release does not complete an outstanding authorized adoption
+   obligation; an excluded or separately held installation adds no new
    authority. Resume the same owner for unfinished in-scope work.
 2. **Owned cleanup read back.** Re-read the owner's cleanup evidence and current
    resource state for the exact owned worktree, branch and other ephemeral
