@@ -1,22 +1,19 @@
-# Sample repository contract — adapt before use
+# Optional repository facts
 
-This is a fictional application repository contract, not this package's policy.
+This fictional example is optional. Supply these facts directly in START when
+there is no AGENTS.md. Personal policy and explicitly supplied constraints still
+apply; the plugins provide the generic workflow.
 
-- One issue owner uses one isolated worktree. Do not revert other writers.
-- Record requirements, owned paths, non-goals, dependencies, and acceptance before
-  editing. Preserve public interfaces unless the issue explicitly changes them.
-- Run the repository's documented lint, typecheck, and relevant test commands;
-  record the exact revision and results. Do not invent a passing check.
-- Self-check every final diff. Ordinary behavioral changes require one fresh,
-  read-only independent reviewer. Reuse that reviewer for unchanged-contract
-  corrections. Consequential security, money, data, migration, or scientific
-  changes require a reviewer qualified for the risk and any pinned model rules.
-- Record requested and effective model/effort. Do not silently substitute models.
-- Delivery for this example ends at a verified, independently approved PR.
-  Pushing the issue branch and opening that PR are authorized. Merging, deploying,
-  using production credentials, and changing repository policy require separate
-  explicit authority. A review approval does not grant it.
-- Include PR URL, revision, verification, review, and worktree disposition in the
-  completion receipt. Preserve a worktree still needed by the open PR; record
-  that retained state instead of calling it deleted.
+- Repository: `example/garden`; one owner in an isolated worktree.
+- Check: `python3 -m unittest discover -s tests -v`.
+- Public interfaces stay compatible unless the issue explicitly changes them.
+- Review: one fresh read-only ordinary reviewer; consequential changes need a
+  qualified independent reviewer and the required reviewer-App approval.
+- Delivery: verified, independently approved PR. Pushing its issue branch and
+  opening the PR are authorized; merge and deployment require separate authority.
+- Production: no production writes or credentials are authorized.
+- Cleanup: retain the worktree while the approved PR remains open; record it.
 - Keep runtime bindings and private evidence out of commits.
+
+Missing checks, access or authority must be resolved before the affected stage.
+This example supplies no credentials and authorizes no real repository actions.
