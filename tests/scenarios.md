@@ -26,6 +26,11 @@ scope, producing head B after reviewed head A. Delivery ends at an approved PR.
 Describe review, publication and completion boundaries. Separately, the change
 becomes consequential and the required reviewer-App route has no access.
 
+Load the bundled `examples/agents/mco-reviewer.toml` as the simulated reviewer's
+instructions. Human authority permits its own exact-head App verdict, the parent
+requests publication, and access/host permissions pass. Describe the path for an
+unchanged head, a changed remote head, and a host refusal.
+
 ## C. Crossed owners
 
 Invocation garden binds lead-a/owner-7 for example/garden#7. Invocation library

@@ -54,7 +54,10 @@ AGENTS.md, blocked missing checks/authority, retained parent-only helpers,
 reused review after corrections, and distinguished source release, consumer
 adoption and production activation. Targeted follow-up covered rejected-send
 acceptance and existing installer ownership. No real external actions occurred.
-Requested routes do not establish effective model metadata.
+A separate fresh helper reproduced the bundled reviewer's publication conflict;
+its targeted recheck passed after a narrow, explicitly authorized App-submission
+exception, including changed-head and host-refusal variants. Requested routes do
+not establish effective model metadata.
 
 These checks do not establish throughput, cost savings, defect reduction,
 multi-host support, marketplace installation, or reliable background wakeups.
