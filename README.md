@@ -93,8 +93,15 @@ for host-specific plugin distribution.
 
 ## Configure and use
 
-1. Adapt the [sample repository contract](examples/AGENTS.md) to the repository
-   being worked on. Keep its engineering and authorization rules there.
+1. Supply the repository's actual check commands, project constraints, credential
+   references and authorization boundaries. An `AGENTS.md` file is optional;
+   existing personal/repository policy still applies. The
+   [optional example](examples/AGENTS.md) illustrates repository-specific facts.
+   Missing checks or authority must be resolved before the affected stage.
+   [ai-delivery](https://github.com/aviaratech/ai-delivery) owns generic issue,
+   author/reviewer access, PR, review and guarded merge interfaces; use its
+   released worktree-lifecycle and pr-handoff skills. This package owns chats
+   and routing. Neither plugin supplies credentials or production authority.
 2. The default child routing names `mco_worker` and `mco_reviewer`. Install those
    [profiles](examples/agents) with the explicit `--agents-dir` option above or
    select existing suitable profiles in configuration. Restart/reload Codex as
@@ -132,6 +139,11 @@ An organization can define several teams sharing role defaults. Each invocation
 binds actual lead and engineer tasks to one outcome. Team names and repository
 names never substitute for those exact runtime bindings. Configuration changes
 apply to new invocations; they do not reroute in-progress work.
+
+Updates apply to new START contracts. Complete active outcomes under their
+recorded contracts; coordinate any authorized release and consumer installation
+separately, and verify the selected version and artifacts before calling adoption
+complete. A source merge alone does not activate consumers.
 
 Read the [worked example](examples/worked-example.md) for the complete route,
 including a review correction and a stale receipt. All example identities are
