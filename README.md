@@ -12,16 +12,21 @@ rules, actual tool permissions, and operator authority still apply.
 
 ## What it does
 
-- Keeps implementation, verification, corrections, and authorized delivery with
-  the same issue owner.
+- Assigns each Ready pickup to one owner through implementation, checks,
+  independent review, authorized merge, closure and cleanup. Ordinary diagnosis,
+  fixes, review corrections and conflicts stay with that owner without renewed
+  approvals. Explicit PR-only scope stops before merge.
 - Names new issue tasks `<repo>-<issue>` from the verified issue-owning
   repository and places them in its uniquely matching saved project when present.
-- Gives the lead dependencies and outcome acceptance, while direct helpers
-  report to their parent.
+- Uses bounded technical helpers for ordinary decisions; the owner decides
+  within scope. Helpers report to their parent. The lead owns dependencies and
+  outcome acceptance.
 - Separates self-checking from independent review and reuses the reviewer for
   corrections within an unchanged contract.
-- Routes blockers and completion receipts using registered task identities and
-  a lead generation number, including an explicit handoff procedure.
+- Sends only completion receipts or decisions unresolved after helper/reviewer
+  analysis to the registered lead. Progress stays in issue/PR journals. Safety,
+  refusal, scope and budget gates still require escalation; helpers cannot grant
+  permission. Routing uses task identities, lead generations and explicit handoff.
 - Isolates invocations sharing a repository and reconciles every child and pending
   lead action before yielding. Cross-invocation dependencies stay lead-to-lead.
 - Uses native task messages and bounded snapshots rather than adding a service.
